@@ -1,0 +1,6 @@
+[submodule "thinker-backend"]
+	path = thinker-backend
+	url = https://github.com/mibe-iot/thinker-backend.git
+[submodule "thinker-frontend"]
+	path = thinker-frontend
+	url = https://github.com/mibe-iot/thinker-frontend.git
