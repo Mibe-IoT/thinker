@@ -3,6 +3,7 @@ version: '3'
 services:
   thinker-mongo:
     image: mongo:4
+    container_name: thinker-db
     restart: always
     env_file: .env
     volumes:
@@ -11,10 +12,11 @@ services:
       - 27017:27017
   broker:
     image: eclipse-mosquitto
+    container_name: mqtt-broker
     network_mode: host
-  thinker:
-    build: ./thinker
-    container_name: thinker
+  thinker-backend:
+    build: ./thinker-backend
+    container_name: thinker-backend
     network_mode: "host"
     cap_add:
       - ALL
