@@ -14,10 +14,17 @@ services:
     image: eclipse-mosquitto
     container_name: mqtt-broker
     network_mode: host
-  thinker-backend:
-    build: ./thinker-backend
-    container_name: thinker-backend
-    network_mode: "host"
+    restart: always
+    volumes:
+      - ./broker.conf:/broker.conf
+    ports:
+      - 1883:1883
+    command: mosquitto -c /broker.conf
+  thinker:
+    image: ghcr.io/mibe-iot/thinker-backend:master
+    restart: always
+    container_name: thinker
+    network_mode: host
     cap_add:
       - ALL
     privileged: true
