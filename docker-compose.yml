@@ -3,8 +3,8 @@ version: '3'
 services:
   mongo:
     image: mongo:4
-    container_name: mongo
     restart: always
+    container_name: mongo
     env_file: .env
     volumes:
       - thinker-data:/var/lib/mongodb/data
@@ -22,6 +22,7 @@ services:
     image: ghcr.io/mibe-iot/thinker-backend:master
     restart: always
     container_name: backend
+    env_file: .env
     network_mode: host
     cap_add:
       - ALL
