@@ -20,14 +20,21 @@ services:
     ports:
       - 1883:1883
     command: mosquitto -c /broker.conf
-  thinker:
+  backend:
     image: ghcr.io/mibe-iot/thinker-backend:master
     restart: always
-    container_name: thinker
+    container_name: backend
     network_mode: host
     cap_add:
       - ALL
     privileged: true
+  frontend:
+    image: ghcr.io/mibe-iot/thinker-frontend:master
+    container_name: frontend
+    ports:
+      - 80:80
+    links:
+      - backend
 
 volumes:
   thinker-data:
