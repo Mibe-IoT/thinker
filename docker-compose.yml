@@ -1,18 +1,16 @@
 version: '3'
 
 services:
-  thinker-mongo:
+  mongo:
     image: mongo:4
-    container_name: thinker-db
+    container_name: mongo
     restart: always
     env_file: .env
     volumes:
       - thinker-data:/var/lib/mongodb/data
-    ports:
-      - 27017:27017
   broker:
     image: eclipse-mosquitto
-    container_name: mqtt-broker
+    container_name: broker
     network_mode: host
     restart: always
     volumes:
@@ -28,13 +26,14 @@ services:
     cap_add:
       - ALL
     privileged: true
+    links:
+      - mongo
   frontend:
     image: ghcr.io/mibe-iot/thinker-frontend:master
     container_name: frontend
+    network_mode: host
     ports:
       - 80:80
-    links:
-      - backend
 
 volumes:
   thinker-data:
