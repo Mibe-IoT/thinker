@@ -5,6 +5,7 @@ services:
     image: mongo:4
     restart: always
     container_name: mongo
+    network_mode: host
     env_file: .env
     volumes:
       - thinker-data:/var/lib/mongodb/data
@@ -25,8 +26,6 @@ services:
     cap_add:
       - ALL
     privileged: true
-    links:
-      - mongo
   frontend:
     image: ghcr.io/mibe-iot/thinker-frontend:master
     container_name: frontend
