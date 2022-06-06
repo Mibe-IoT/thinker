@@ -15,8 +15,6 @@ services:
     restart: always
     volumes:
       - ./broker.conf:/broker.conf
-    ports:
-      - 1883:1883
     command: mosquitto -c /broker.conf
   backend:
     image: ghcr.io/mibe-iot/thinker-backend:master
@@ -33,8 +31,6 @@ services:
     image: ghcr.io/mibe-iot/thinker-frontend:master
     container_name: frontend
     network_mode: host
-    ports:
-      - 80:80
 
 volumes:
   thinker-data:
