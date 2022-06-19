@@ -27,7 +27,7 @@ services:
       - ALL
     privileged: true
   frontend:
-    image: ghcr.io/mibe-iot/thinker-frontend:master
+    image: ghcr.io/mibe-iot/thinker-frontend:latest
     container_name: frontend
     network_mode: host
 
